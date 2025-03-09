@@ -84,8 +84,10 @@ class MainWindow(QMainWindow):
             layout.addLayout(row_layout)
 
         button_layout = QHBoxLayout()
-        button_layout.addWidget(self.submit_button)
+        # Adding .addStretch between and after the submit button will makesure the button is in center
         button_layout.addStretch()
+        button_layout.addWidget(self.submit_button)
+        button_layout.addStretch() 
         layout.addLayout(button_layout)
 
         central_widget.setLayout(layout)
