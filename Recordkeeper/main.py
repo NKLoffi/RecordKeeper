@@ -56,6 +56,8 @@ class MainWindow(QMainWindow):
             "province": QLineEdit(self),
         }
 
+        self.text_boxes["sin"].setEchoMode(QLineEdit.Password) #This will hide the SIN number when the user enters
+
         placeholders ={                        # Stored all placeholders in Dictionary
             "fname": "eg.John",
             "lname": "eg. doe",
