@@ -123,6 +123,14 @@ class MainWindow(QMainWindow):
                 color: white;
                            }
         """)
+
+
+        # Function to clear data after the user press Submit button
+
+    def clear_data(self):  
+        for textbox in self.text_boxes.values():
+            textbox.clear()
+
     def submit_data(self):
 
         first_name = self.text_boxes["fname"].text()
@@ -137,8 +145,9 @@ class MainWindow(QMainWindow):
         self.db.insert_user_data(first_name, last_name, email, dob, sin, address, city, province)
 
         print("Data submitted successfully")
-            
 
+        self.clear_data() # Called the function to clear data After the user clickes submit button
+        
 def main():
     app = QApplication(sys.argv)  
     window = MainWindow()
