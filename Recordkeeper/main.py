@@ -40,6 +40,7 @@ class MainWindow(QMainWindow):
             "dob": QLabel("DOB: "),
             "sin": QLabel("SIN: "),
             "address" : QLabel("Address: "),
+            "country" : QLabel("Country"),
             "city": QLabel("City: "),
             "province": QLabel("Province")
 
@@ -52,6 +53,7 @@ class MainWindow(QMainWindow):
             "dob": QLineEdit(self),
             "sin": QLineEdit(self),
             "address": QLineEdit(self),
+            "country": QLineEdit(self),
             "city": QLineEdit(self),
             "province": QLineEdit(self),
         }
@@ -65,6 +67,7 @@ class MainWindow(QMainWindow):
             "dob": "eg. DD-MM-YYY",
             "sin": "eg. 000-000-000",
             "address": "eg. 22 Devitt Ave N",
+            "country": "eg. Canada",
             "city": "Waterloo",
             "province": "Ontario",
         }
@@ -139,10 +142,11 @@ class MainWindow(QMainWindow):
         dob = self.text_boxes["dob"].text()
         sin = self.text_boxes["sin"].text()
         address = self.text_boxes["address"].text()
+        country = self.text_boxes["country"].text()
         city = self.text_boxes["city"].text()
         province = self.text_boxes["province"].text()
 
-        self.db.insert_user_data(first_name, last_name, email, dob, sin, address, city, province)
+        self.db.insert_user_data(first_name, last_name, email, dob, sin, address, country, city, province)
 
         print("Data submitted successfully")
 

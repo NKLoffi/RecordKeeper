@@ -17,6 +17,7 @@ class Database:
                                 Dob DATE NOT NULL,
                                 Sin TEXT NOT NULL,
                                 Address TEXT NOT NULL,
+                                Country Text NOT NULL,
                                 City TEXT NOT NULL,
                                 Province TEXT NOT NULL
                                 );"""
@@ -26,7 +27,7 @@ class Database:
             connection.execute(CREATE_DATA_TABLE)
         connection.close()
 
-    def insert_user_data(self, fname, lname, email, dob, sin, addy, city, prov): # function to insert user data
+    def insert_user_data(self, fname, lname, email, dob, sin, addy, country, city, prov): # function to insert user data
 
         INSERT_INFO = """ INSERT INTO info (
                             FirstName,
@@ -35,13 +36,14 @@ class Database:
                             Dob,
                             Sin,
                             Address,
+                            Country,
                             City,
                             Province )
-                            values( ?, ?, ?, ?, ?, ?, ?, ?
+                            values( ?, ?, ?, ?, ?, ?, ?, ?, ?
                         );"""
         connection = self.connect()
         with connection:
-            connection.execute(INSERT_INFO, (fname, lname, email, dob, sin, addy, city, prov))
+            connection.execute(INSERT_INFO, (fname, lname, email, dob, sin, country, addy, city, prov))
         connection.close()
 
 
