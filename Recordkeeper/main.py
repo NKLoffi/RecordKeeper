@@ -108,10 +108,15 @@ class MainWindow(QMainWindow):
                            
             QPushButton#submitButton{
 
-                background-color: #4CAF50;
+                background-color: hsl(122, 39%, 49%);
                 color: white;
 
+
                 }
+            QPushButton#submitButton:hover {
+                           background-color: hsl(122, 39%, 40%);
+                           
+                           }
                            
             
             QLineEdit{
