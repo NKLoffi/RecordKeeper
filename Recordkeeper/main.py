@@ -2,7 +2,8 @@ from database import Database
 import sys
 from PyQt5.QtWidgets import (QPushButton, QLineEdit, QApplication, QMainWindow,
                               QLabel, QVBoxLayout, QHBoxLayout, QWidget, QSizePolicy)
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QRegularExpression
+from PyQt5.QtGui import QRegularExpressionValidator
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -58,6 +59,12 @@ class MainWindow(QMainWindow):
             "province": QLineEdit(self),
         }
 
+
+        dob_regex = QRegularExpression(r"\d{2}-\d{2}-\d{4}") # Validator dor date of birth
+        self.text_boxes["dob"].setValidator(QRegularExpressionValidator(dob_regex, self)) # Assigned the validator for DOB text box
+
+        sin_regex = QRegularExpression(r"\d{3}-\d{3}-\d{3}") # Validator for SIN number
+        self.text_boxes["sin"].setValidator(QRegularExpressionValidator(sin_regex, self)) # Assigned the validator to SIN text box
         self.text_boxes["sin"].setEchoMode(QLineEdit.Password) #This will hide the SIN number when the user enters
 
         placeholders ={                        # Stored all placeholders in Dictionary
