@@ -1,7 +1,8 @@
 from database import Database
 import sys
 from PyQt5.QtWidgets import (QPushButton, QLineEdit, QApplication, QMainWindow,
-                              QLabel, QVBoxLayout, QHBoxLayout, QWidget, QSizePolicy)
+                              QLabel, QVBoxLayout, QHBoxLayout, QWidget, QSizePolicy,
+                              QMessageBox)
 from PyQt5.QtCore import Qt, QRegularExpression
 from PyQt5.QtGui import QRegularExpressionValidator
 
@@ -66,6 +67,8 @@ class MainWindow(QMainWindow):
         sin_regex = QRegularExpression(r"\d{3}-\d{3}-\d{3}") # Validator for SIN number
         self.text_boxes["sin"].setValidator(QRegularExpressionValidator(sin_regex, self)) # Assigned the validator to SIN text box
         self.text_boxes["sin"].setEchoMode(QLineEdit.Password) #This will hide the SIN number when the user enters
+
+
 
         placeholders ={                        # Stored all placeholders in Dictionary
             "fname": "eg.John",
@@ -146,7 +149,14 @@ class MainWindow(QMainWindow):
         for textbox in self.text_boxes.values():
             textbox.clear()
 
-    def submit_data(self):
+    def submit_data(self): # function to save data to database
+
+        empty_boxes = [key for key, textbox in self.text_boxes.items() if not textbox.text().strip()] 
+
+        if empty_boxes:
+            QMessageBox.warning(self,"Missing Fields", "All fields Are Required")
+            return
+            
 
         first_name = self.text_boxes["fname"].text()
         last_name = self.text_boxes["lname"].text()
