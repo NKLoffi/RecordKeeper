@@ -1,10 +1,4 @@
-from database import Database
-import sys
-from PyQt5.QtWidgets import (QPushButton, QLineEdit, QApplication, QMainWindow,
-                              QLabel, QVBoxLayout, QHBoxLayout, QWidget, QSizePolicy,
-                              QMessageBox)
-from PyQt5.QtCore import Qt, QRegularExpression
-from PyQt5.QtGui import QRegularExpressionValidator
+from header import *
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -47,7 +41,7 @@ class MainWindow(QMainWindow):
             "province": QLabel("Province")
 
         }
-
+        
         self.text_boxes = {                     # Stored all the Text boxes in Dictionary
             "fname": QLineEdit(self),
             "lname": QLineEdit(self),
@@ -57,7 +51,7 @@ class MainWindow(QMainWindow):
             "address": QLineEdit(self),
             "country": QLineEdit(self),
             "city": QLineEdit(self),
-            "province": QLineEdit(self),
+            "province": QLineEdit(self)
         }
 
 
