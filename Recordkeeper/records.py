@@ -20,11 +20,18 @@ class MainWindow(QMainWindow):
         self.table_view.setModel(self.model)
         self.setCentralWidget(self.table_view)
 
+        self.initUI()
+
     def dataSearch():
         pass    
 
     def initUI(self):
-        pass
+        self.setStyleSheet("""
+            QWidget{
+                background-color: hsl(220, 13%, 10%)
+                           }
+            """)
+        
 
 def main():
     app = QApplication(sys.argv)
