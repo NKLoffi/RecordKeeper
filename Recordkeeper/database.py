@@ -43,7 +43,7 @@ class Database:
                         );"""
         connection = self.connect()
         with connection:
-            connection.execute(INSERT_INFO, (fname, lname, email, dob, sin, country, addy, city, prov))
+            connection.execute(INSERT_INFO, (fname, lname, email, dob, sin, addy, country,  city, prov))
         connection.close()
 
 

@@ -1,4 +1,4 @@
-from header import *
+from modules import *
 
 class MainWindow(QMainWindow):
     def __init__(self):
