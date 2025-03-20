@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
 
         self.table_view = QTableView()
         self.table_view.setModel(self.model)
+        self.table_view.setShowGrid(True)
         self.setCentralWidget(self.table_view)
 
         self.initUI()
@@ -30,6 +31,10 @@ class MainWindow(QMainWindow):
             QWidget{
                 background-color: hsl(220, 13%, 10%)
                            }
+
+            QTableView{
+                gridline-color:white;
+                }
             """)
         
 
