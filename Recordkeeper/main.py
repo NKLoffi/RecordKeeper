@@ -107,7 +107,7 @@ class MainWindow(QMainWindow):
         self.setStyleSheet("""
                            
             QMainWindow{
-                background-color: hsl(220, 13%, 16%)
+                background-color: hsl(220, 13%, 16%);
             }
                            
             QPushButton#submitButton{
@@ -141,24 +141,55 @@ class MainWindow(QMainWindow):
                 color: white;
                            }
 
+            QLineEdit:hover{
+                background-color: hsl(221, 13%, 20%);    
+                           }
+
             QLabel{
                 color: white;
+                           }
+            QMessageBox{
+                background-color: hsl(220, 13%, 18%);
+                           }
+            QMessageBox QPushButton {
+                background-color: hsl(227, 80%, 60%);
+                color: white;
+                min-width: 100px;
+                max-width: 100px;
+                min-height: 25px;
+                max-height: 25px;
+                border-radius: 5px;
+                           }
+
+            QMessageBox QPushButton:hover {
+                background-color: hsl(227, 80%, 40%);
                            }
         """)
 
 
-        # Function to clear data after the user press Submit button
+
+    # Function to clear data after the user press Submit button
 
     def clear_data(self):  
         for textbox in self.text_boxes.values():
             textbox.clear()
+
+    # Function to display a warning box for missing fields
+
+    def warning_dialouge(self): 
+        dialog = QMessageBox(self)
+        dialog.setText("You need to fill all the fields")
+        dialog.setWindowTitle("Warning") # the title is not displayed yet
+        dialog.setIcon(QMessageBox.Information)
+        dialog.setDetailedText("You haven't filled some information")
+        dialog.exec_()
 
     def submit_data(self): # function to save data to database
 
         empty_boxes = [key for key, textbox in self.text_boxes.items() if not textbox.text().strip()] 
 
         if empty_boxes:
-            QMessageBox.warning(self,"Missing Fields", "All fields Are Required")
+            self.warning_dialouge()
             return
             
 
