@@ -36,9 +36,9 @@ class MainWindow(QMainWindow):
             "dob": QLabel("DOB: "),
             "sin": QLabel("SIN: "),
             "address" : QLabel("Address: "),
-            "country" : QLabel("Country"),
+            "country" : QLabel("Country: "),
             "city": QLabel("City: "),
-            "province": QLabel("Province")
+            "province": QLabel("Province: ")
 
         }
         
@@ -176,12 +176,14 @@ class MainWindow(QMainWindow):
 
     # Function to display a warning box for missing fields
 
-    def warning_dialouge(self): 
+    def warning_dialouge(self, empty_fields): 
         dialog = QMessageBox(self)
         dialog.setText("You need to fill all the fields")
         dialog.setWindowTitle("Warning") # the title is not displayed yet
         dialog.setIcon(QMessageBox.Information)
-        dialog.setDetailedText("You haven't filled some information")
+
+        missing_fields_text = "\n".join([self.labels[key].text() for key in empty_fields]) 
+        dialog.setDetailedText(f"You haven't filled the following fields:\n {missing_fields_text}")
         dialog.exec_()
 
     def submit_data(self): # function to save data to database
@@ -189,7 +191,7 @@ class MainWindow(QMainWindow):
         empty_boxes = [key for key, textbox in self.text_boxes.items() if not textbox.text().strip()] 
 
         if empty_boxes:
-            self.warning_dialouge()
+            self.warning_dialouge(empty_boxes)
             return
             
 
