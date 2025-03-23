@@ -55,13 +55,13 @@ class MainWindow(QMainWindow):
         }
 
 
-        dob_regex = QRegularExpression(r"\d{2}-\d{2}-\d{4}") # Validator dor date of birth
+        dob_regex = QRegularExpression(r"\d{2}-\d{2}-\d{4}") # Validator for date of birth
         self.text_boxes["dob"].setValidator(QRegularExpressionValidator(dob_regex, self)) # Assigned the validator for DOB text box
 
         sin_regex = QRegularExpression(r"\d{3}-\d{3}-\d{3}") # Validator for SIN number
         self.text_boxes["sin"].setValidator(QRegularExpressionValidator(sin_regex, self)) # Assigned the validator to SIN text box
-        self.text_boxes["sin"].setEchoMode(QLineEdit.Password) #This will hide the SIN number when the user enters
 
+        self.text_boxes["sin"].setEchoMode(QLineEdit.Password) #This will hide the SIN number when the user enters
 
 
         placeholders ={                        # Stored all placeholders in Dictionary
@@ -176,22 +176,32 @@ class MainWindow(QMainWindow):
 
     # Function to display a warning box for missing fields
 
-    def warning_dialouge(self, empty_fields): 
+    def warning_dialouge(self, empty_fields, invalid_email): 
         dialog = QMessageBox(self)
         dialog.setText("You need to fill all the fields")
         dialog.setWindowTitle("Warning") # the title is not displayed yet
         dialog.setIcon(QMessageBox.Information)
 
-        missing_fields_text = "\n".join([self.labels[key].text() for key in empty_fields]) 
-        dialog.setDetailedText(f"You haven't filled the following fields:\n {missing_fields_text}")
+        if empty_fields:
+            missing_fields_text = "\n".join([self.labels[key].text() for key in empty_fields]) 
+            dialog.setDetailedText(f"You haven't filled the following fields:\n{missing_fields_text}")
+        
+        if invalid_email:
+            dialog.setText("Invalid Email")
+            dialog.setDetailedText("Please enter a valid email address.")
         dialog.exec_()
 
     def submit_data(self): # function to save data to database
 
         empty_boxes = [key for key, textbox in self.text_boxes.items() if not textbox.text().strip()] 
 
-        if empty_boxes:
-            self.warning_dialouge(empty_boxes)
+        email = self.text_boxes["email"].text()
+        email_regex = QRegularExpression(r"^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+([.-][0-9a-zA-Z]+)*\.[a-zA-Z]{2,}$")
+        self.text_boxes["email"].setValidator(QRegularExpressionValidator(email_regex))
+        invalid_email = not email_regex.match(email).hasMatch()
+
+        if empty_boxes or invalid_email:
+            self.warning_dialouge(empty_fields=  empty_boxes if empty_boxes else None, invalid_email = invalid_email)
             return
             
 
