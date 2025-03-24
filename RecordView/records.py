@@ -23,7 +23,8 @@ class MainWindow(QMainWindow):
 
         self.initUI()
 
-    def dataSearch():
+    def dataSearch(): # implement the function for searching a specific data from teh database
+
         pass    
 
     def initUI(self):

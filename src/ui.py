@@ -1,4 +1,11 @@
-from modules import *
+from database import Database
+import sys
+from PyQt5.QtWidgets import (QPushButton, QLineEdit, QApplication, QMainWindow,
+                              QLabel, QVBoxLayout, QHBoxLayout, QWidget, QSizePolicy,
+                              QMessageBox)
+from PyQt5.QtCore import Qt, QRegularExpression
+from PyQt5.QtGui import QRegularExpressionValidator
+import styles
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -7,7 +14,7 @@ class MainWindow(QMainWindow):
         self.db = Database()  #initalizing database connection 
         self.db.create_table() # To create table
 
-        self.setWindowTitle("Information")  # setting title to the window
+        self.setWindowTitle("Record Keeper")  # setting title to the window
         self.resize(800, 800)  # 800 pixes wide and 800 pixels tall
         screen = QApplication.primaryScreen() # gets the primary screen (monitor) on which the application is running
         screen_react = screen.geometry() # Tells the program how big the entire screen is (Retrieves the geometry of the screen)
@@ -22,8 +29,6 @@ class MainWindow(QMainWindow):
 
         self.initUI()
 
-
-        # Lets just make some text boxes for entering our data
 
     def initUI(self): # initalizing the UI
         central_widget = QWidget() 
@@ -70,9 +75,9 @@ class MainWindow(QMainWindow):
             "email": "eg. doejohn@gmail.com",
             "dob": "eg. DD-MM-YYY",
             "sin": "eg. 000-000-000",
-            "address": "eg. 22 Devitt Ave N",
+            "address": "eg. winter lane",
             "country": "eg. Canada",
-            "city": "Waterloo",
+            "city": "brightfox",
             "province": "Ontario",
         }
 
@@ -104,67 +109,8 @@ class MainWindow(QMainWindow):
 
         self.submit_button.setObjectName("submitButton")
 
-        self.setStyleSheet("""
-                           
-            QMainWindow{
-                background-color: hsl(220, 13%, 16%);
-            }
-                           
-            QPushButton#submitButton{
+        self.setStyleSheet(styles.WINDOW_STYLE)
 
-                background-color: hsl(122, 39%, 49%);
-                color: white;
-                min-width: 100px;
-                max-width: 100px;
-                min-height: 25px;
-                max-height: 25px;
-                border-radius: 5px;
-
-
-                }
-            QPushButton#submitButton:hover {
-                           background-color: hsl(122, 39%, 40%);
-
-                           
-                           }
-                           
-            
-            QLineEdit{
-                background-color: hsl(221, 13%, 28%);
-                border: solid black;
-                border-radius: 5px;
-                margin-left: 10px;
-                min-width: 200px;
-                max-width: 200px;
-                min-height: 25px;
-                max-height: 25px;
-                color: white;
-                           }
-
-            QLineEdit:hover{
-                background-color: hsl(221, 13%, 20%);    
-                           }
-
-            QLabel{
-                color: white;
-                           }
-            QMessageBox{
-                background-color: hsl(220, 13%, 18%);
-                           }
-            QMessageBox QPushButton {
-                background-color: hsl(227, 80%, 60%);
-                color: white;
-                min-width: 100px;
-                max-width: 100px;
-                min-height: 25px;
-                max-height: 25px;
-                border-radius: 5px;
-                           }
-
-            QMessageBox QPushButton:hover {
-                background-color: hsl(227, 80%, 40%);
-                           }
-        """)
 
 
 
@@ -220,12 +166,3 @@ class MainWindow(QMainWindow):
         print("Data submitted successfully")
 
         self.clear_data() # Called the function to clear data After the user clickes submit button
-        
-def main():
-    app = QApplication(sys.argv)  
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())
-
-if __name__ == "__main__":
-    main()
