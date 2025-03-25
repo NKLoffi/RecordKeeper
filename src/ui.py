@@ -5,7 +5,9 @@ from PyQt5.QtWidgets import (QPushButton, QLineEdit, QApplication, QMainWindow,
                               QMessageBox)
 from PyQt5.QtCore import Qt, QRegularExpression
 from PyQt5.QtGui import QRegularExpressionValidator
-import styles
+
+import styles 
+
 
 class MainWindow(QMainWindow):
     def __init__(self):

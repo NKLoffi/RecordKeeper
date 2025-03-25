@@ -17,10 +17,9 @@ WINDOW_STYLE = """
 
         }
     QPushButton#submitButton:hover {
-                    background-color: hsl(122, 39%, 40%);
-
+        background-color: hsl(122, 39%, 40%);
                     
-                    }
+         }
                     
     
     QLineEdit{
@@ -33,18 +32,18 @@ WINDOW_STYLE = """
         min-height: 25px;
         max-height: 25px;
         color: white;
-                    }
+        }
 
     QLineEdit:hover{
         background-color: hsl(221, 13%, 20%);    
-                    }
+        }
 
     QLabel{
         color: white;
-                    }
+        }
     QMessageBox{
         background-color: hsl(220, 13%, 18%);
-                    }
+        }
     QMessageBox QPushButton {
         background-color: hsl(227, 80%, 60%);
         color: white;
@@ -53,9 +52,9 @@ WINDOW_STYLE = """
         min-height: 25px;
         max-height: 25px;
         border-radius: 5px;
-                    }
+        }
 
     QMessageBox QPushButton:hover {
         background-color: hsl(227, 80%, 40%);
-                    }
+        }
 """
