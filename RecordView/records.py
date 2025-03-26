@@ -1,7 +1,8 @@
 import sys
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QTableView, QLineEdit, QPushButton,
-                             QVBoxLayout, QWidget)
+                             QVBoxLayout, QHBoxLayout, QWidget)
 from PyQt5.QtSql import (QSqlDatabase, QSqlTableModel)
+import styles
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -27,9 +28,15 @@ class MainWindow(QMainWindow):
         self.search_button = QPushButton("Search")
         self.search_button.clicked.connect(self.dataSearch)
 
+        search_layout = QHBoxLayout()
+        search_layout.addWidget(self.search_input)
+        search_layout.addWidget(self.search_button)
+
+        search_container = QWidget()
+        search_container.setLayout(search_layout)
+
         layout = QVBoxLayout()
-        layout.addWidget(self.search_input)
-        layout.addWidget(self.search_button)
+        layout.addWidget(search_container)
         layout.addWidget(self.table_view)
 
 
@@ -50,15 +57,7 @@ class MainWindow(QMainWindow):
 
 
     def initUI(self):
-        self.setStyleSheet("""
-            QWidget{
-                background-color: hsl(220, 13%, 10%)
-                           }
-
-            QTableView{
-                gridline-color:white;
-                }
-            """)
+        self.setStyleSheet(styles.WINDOW_STYLE)
         
 
 def main():
