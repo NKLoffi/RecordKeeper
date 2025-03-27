@@ -29,6 +29,4 @@ WINDOW_STYLE = """
         max-height: 25px;
         color: white;
 }
-
-
 """

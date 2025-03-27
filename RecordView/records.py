@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QTableView, QLineEdit, QPushButton,
+from PyQt5.QtWidgets import (QMainWindow, QTableView, QLineEdit, QPushButton,
                              QVBoxLayout, QHBoxLayout, QWidget)
 from PyQt5.QtSql import (QSqlDatabase, QSqlTableModel)
 import styles
@@ -59,12 +59,3 @@ class MainWindow(QMainWindow):
     def initUI(self):
         self.setStyleSheet(styles.WINDOW_STYLE)
         
-
-def main():
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
-    sys.exit(app.exec_())
-
-if __name__ == "__main__":
-    main()
