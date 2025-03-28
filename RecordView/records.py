@@ -46,10 +46,20 @@ class MainWindow(QMainWindow):
 
         self.initUI()
 
-    def dataSearch(self): # implement the function for searching a specific data from teh database
+    def dataSearch(self): # Function to search a value from the database
         search_text = self.search_input.text().strip()
         if search_text:
-            self.model.setFilter(f"FirstName LIKE '%{search_text}%'")
+            self.model.setFilter(f"""
+                                 FirstName LIKE '%{search_text}%' OR
+                                 LastName LIKE '%{search_text}%' OR
+                                 EmailId LIKE '%{search_text}%' OR
+                                 Dob LIKE '%{search_text}%' OR
+                                 Sin LIKE '%{search_text}%' OR
+                                 Address LIKE '%{search_text}%' OR
+                                 Country LIKE '%{search_text}%' OR
+                                 City LIKE '%{search_text}%' OR
+                                 Province LIKE '%{search_text}%'
+                                 """)
 
         else:
             self.model.setFilter("")
