@@ -5,6 +5,7 @@ WINDOW_STYLE = """
 
     QTableView{
         gridline-color:white;
+        color: white;
         }
     QPushButton{
         background-color: hsl(227, 80%, 60%);
