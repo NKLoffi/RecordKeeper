@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         self.table_view = QTableView()
         self.table_view.setModel(self.model)
         self.table_view.setShowGrid(True)
+        self.table_view.setEditTriggers(QTableView.NoEditTriggers) # Made the table non-editable
 
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("Search Data")
