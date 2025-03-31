@@ -138,6 +138,14 @@ class MainWindow(QMainWindow):
             dialog.setDetailedText("Please enter a valid email address.")
         dialog.exec_()
 
+    def save_dialouge(self):
+        dialog = QMessageBox(self)
+        dialog.setText("Your data has been saved to our files")
+        dialog.setWindowTitle("Success")
+        dialog.setIcon(QMessageBox.Information)
+        dialog.exec_()
+
+
     def submit_data(self): # function to save data to database
 
         empty_boxes = [key for key, textbox in self.text_boxes.items() if not textbox.text().strip()] 
@@ -165,5 +173,7 @@ class MainWindow(QMainWindow):
         self.db.insert_user_data(first_name, last_name, email, dob, sin, address, country, city, province)
 
         print("Data submitted successfully")
+
+        self.save_dialouge() # Called the message box to show the user the data is saved to the database
 
         self.clear_data() # Called the function to clear data After the user clickes submit button
