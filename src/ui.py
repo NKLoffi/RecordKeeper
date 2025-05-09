@@ -13,7 +13,7 @@ class MainWindow(QMainWindow):
         super().__init__()    # initalizing the main window
 
         self.db = Database()  #initalizing database connection 
-        self.db.create_table() # To create table
+        self.db.create_table() # To create table    
 
         self.setWindowTitle("Record Keeper")  # setting title to the window
         self.resize(800, 800)  # 800 pixes wide and 800 pixels tall
