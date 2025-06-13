@@ -15,7 +15,7 @@
 
 **The Program also validates SIN, Date of Birth and email to make sure the user don't enter an invalid data**
 
-![alt text](assets/MainPage.png) 
+![alt text](assets/Mainpage.png) 
 
 ![alt text](assets/mainPageWarning.png)
 
